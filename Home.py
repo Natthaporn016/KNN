@@ -134,7 +134,7 @@ dt_sum = dt.sum().reset_index()
 dt_sum.columns = ["Feature", "Total"]
 
 if st.button("✨ แสดงกราฟข้อมูล (Visualization) ✨", key="chart3"):
-    st.markdown("### ✨ กราฟแบบ pastel ฟุ้ง ๆ ✨")
+    st.markdown("### ✨ กราฟข้อมูล✨")
     chart = alt.Chart(dt_sum).mark_bar(cornerRadiusTopLeft=8, cornerRadiusTopRight=8).encode(
         x=alt.X('Feature', sort=None),
         y='Total',
