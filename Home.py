@@ -4,160 +4,140 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-# ---------------------------------------------------------
-# 🌸 Pastel Theme + Glow Button + Card UI CSS
-# ---------------------------------------------------------
+# -------------------- CSS Minimal Pastel --------------------
 st.markdown("""
 <style>
 
 /* Body */
 body {
-    background: linear-gradient(180deg, #ffeef5, #fff0f8) !important;
+    background: #fff0f5 !important;
     font-family: 'Segoe UI', sans-serif;
 }
 
 /* Sidebar */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #ffd6e8, #ffeaf6);
+    background: linear-gradient(180deg, #ffe6f0, #fff0f5);
     color: #333;
-    border-radius: 20px;
     padding: 15px;
+    border-radius: 15px;
 }
 
 /* Title Card */
 .title-card {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
-    padding: 30px;
-    border-radius: 30px;
+    background: #ffccdd;
+    padding: 20px;
+    border-radius: 20px;
     text-align: center;
-    color: #fff;
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(255,150,200,0.4);
+    color: #222;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 /* Section Card */
 .section-card {
-    background: #ffffffdd;
-    padding: 25px;
-    border-radius: 25px;
-    box-shadow: 0 6px 25px rgba(255,150,200,0.25);
+    background: #ffffffcc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-top: 25px;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
 }
 .section-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 /* Sub Header */
 .sub-header {
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 600;
     text-align: center;
     color: #ff6f91;
     margin-bottom: 15px;
 }
 
-/* Glow Button */
-.glow-btn {
-    background: linear-gradient(135deg, #ffb6c1, #ff9a9e);
+/* Minimal Button */
+.minimal-btn {
+    background: #ff9ebc;
     color: white !important;
-    padding: 14px 35px;
-    border-radius: 35px;
+    padding: 12px 28px;
+    border-radius: 25px;
     border: none;
-    font-size: 18px;
-    box-shadow: 0 0 15px #ff8ab5, 0 0 25px #ff8ab5 inset;
-    transition: all 0.3s ease;
-    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(255, 120, 160, 0.3);
+    transition: 0.3s ease;
 }
-.glow-btn:hover {
-    box-shadow: 0 0 30px #ff5f9e, 0 0 40px #ff8ab5 inset;
+.minimal-btn:hover {
+    box-shadow: 0 2px 12px rgba(255, 120, 160, 0.5);
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* Slider & Input Fields */
+/* Input Fields */
 .stSlider>div>div>div>div { color: #ff6f91 !important; }
 .stNumberInput>div>input {
-    border-radius: 15px !important;
-    border: 2px solid #ffb6c1 !important;
+    border-radius: 12px !important;
+    border: 1.5px solid #ffb6c1 !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# Sidebar
-# ---------------------------------------------------------
-st.sidebar.markdown("## 🌸 Pink Dashboard")
-st.sidebar.image("./img/pin.jpg", width=180)
+# -------------------- Sidebar --------------------
+st.sidebar.markdown("## 🌸 Pink Minimal Dashboard")
+st.sidebar.image("./img/pin.jpg", width=160)
 st.sidebar.markdown("""
-**เมนู**
-- 📌 หน้าแรก
-- 🌼 ข้อมูลสายพันธุ์ดอกไม้
-- 📊 Visualization
-- 🔮 ระบบทำนาย
-- 💖 ติดต่อปิ่น
+**Menu**
+- 📌 Home
+- 🌼 Flower Samples
+- 📊 Statistics
+- 🔮 Prediction
 """)
 
-# ---------------------------------------------------------
-# Header
-# ---------------------------------------------------------
-st.markdown('<div class="title-card">🌸 Pin - Pink Iris Classification Dashboard 🌸</div>', unsafe_allow_html=True)
-st.image("./img/pin.jpg", width=250)
-st.write("### ยินดีต้อนรับเข้าสู่ Pink Dashboard สำหรับทำนายสายพันธุ์ดอกไม้ไอริส 💗")
+# -------------------- Header --------------------
+st.markdown('<div class="title-card">🌸 Iris Classification Dashboard 🌸</div>', unsafe_allow_html=True)
+st.write("### ยินดีต้อนรับสู่ระบบทำนายสายพันธุ์ดอกไม้ 🩷")
 
-# ---------------------------------------------------------
-# ตัวอย่างภาพสายพันธุ์ดอกไม้
-# ---------------------------------------------------------
+# -------------------- Flower Sample --------------------
 st.markdown('<div class="section-card">', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">🌼 ตัวอย่างภาพสายพันธุ์ดอกไม้</div>', unsafe_allow_html=True)
-
 col1, col2, col3 = st.columns(3)
 with col1: st.image("./img/iris1.jpg", caption="Versicolor")
 with col2: st.image("./img/iris2.jpg", caption="Virginica")
 with col3: st.image("./img/iris3.jpg", caption="Setosa")
-
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# สถิติข้อมูลดอกไม้ + Visualization pastel
-# ---------------------------------------------------------
+# -------------------- Statistics --------------------
 st.markdown('<div class="section-card">', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">📊 สถิติข้อมูลดอกไม้</div>', unsafe_allow_html=True)
-
 dt = pd.read_csv("./data/iris.csv")
 st.write(dt.head(10))
 
 dt_sum = dt.sum().reset_index()
 dt_sum.columns = ["Feature", "Total"]
 
-if st.button("✨ แสดงกราฟข้อมูล (Visualization) ✨", key="chart3"):
-    st.markdown("### ✨ กราฟข้อมูล✨")
-    chart = alt.Chart(dt_sum).mark_bar(cornerRadiusTopLeft=8, cornerRadiusTopRight=8).encode(
+if st.button("📈 แสดงกราฟ", key="chart_minimal"):
+    chart = alt.Chart(dt_sum).mark_bar(cornerRadiusTopLeft=5, cornerRadiusTopRight=5).encode(
         x=alt.X('Feature', sort=None),
         y='Total',
-        color=alt.Color('Feature', scale=alt.Scale(range=['#ffb6c1','#ff9a9e','#ffc0cb','#ff7f9e']))
-    ).properties(width=600, height=400)
+        color=alt.Color('Feature', scale=alt.Scale(range=['#ffb6c1','#ff9eac','#ffc0cb','#ff7f9e']))
+    ).properties(width=600, height=350)
     st.altair_chart(chart, use_container_width=True)
 else:
-    st.info("กดปุ่มเพื่อแสดงกราฟภาพรวม")
+    st.info("กดปุ่มเพื่อดูกราฟสถิติ")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# ระบบทำนายข้อมูลดอกไม้
-# ---------------------------------------------------------
+# -------------------- Prediction --------------------
 st.markdown('<div class="section-card">', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">🔮 ระบบทำนายข้อมูลดอกไม้</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-header">🔮 ระบบทำนายสายพันธุ์ดอกไม้</div>', unsafe_allow_html=True)
+pt_len = st.slider("Petal Length", 0.0, 10.0, 1.0)
+pt_wd = st.slider("Petal Width", 0.0, 5.0, 1.0)
+sp_len = st.number_input("Sepal Length")
+sp_wd = st.number_input("Sepal Width")
 
-pt_len = st.slider("เลือกค่า Petal Length", 0.0, 10.0, 1.0)
-pt_wd = st.slider("เลือกค่า Petal Width", 0.0, 5.0, 1.0)
-sp_len = st.number_input("กรอกค่า Sepal Length")
-sp_wd = st.number_input("กรอกค่า Sepal Width")
-
-if st.button("✨ ทำนายสายพันธุ์ดอกไม้ ✨", key="predict2"):
+if st.button("🔮 ทำนาย", key="predict_minimal"):
     X = dt.drop('variety', axis=1)
     y = dt["variety"]
     model = KNeighborsClassifier(n_neighbors=3)
@@ -166,8 +146,7 @@ if st.button("✨ ทำนายสายพันธุ์ดอกไม้ �
     x_input = np.array([[pt_len, pt_wd, sp_len, sp_wd]])
     result = model.predict(x_input)
 
-    st.success(f"ผลการทำนายคือ ➜ 🌸 **{result[0]}** 🌸")
-
+    st.success(f"ผลการทำนาย: **{result[0]}** 🌸")
     if result[0] == 'Setosa': st.image("./img/iris3.jpg", caption="Setosa")
     elif result[0] == 'Versicolor': st.image("./img/iris1.jpg", caption="Versicolor")
     else: st.image("./img/iris2.jpg", caption="Virginica")
